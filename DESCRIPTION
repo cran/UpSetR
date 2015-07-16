@@ -1,0 +1,22 @@
+Package: UpSetR
+Title: Visualization of Intersecting Sets
+Version: 0.0.4
+Date: 2015-07-13
+Authors@R: c(
+    person("Conway", "Jake", email = "jake_conway@student.uml.edu", role = "cre"),
+    person("Gehlenborg", "Nils", email = "nils@hms.harvard.edu", role = "aut"))
+Description: Creates visualizations of intersecting sets using a novel matrix design,
+             along with visualizations of several common set, element and attribute
+             related tasks.
+Depends: R (>= 2.5)
+Imports: ggplot2, grid, gridExtra, plyr, utils, stats, methods,
+        grDevices
+License: MIT + file LICENSE
+LazyData: true
+NeedsCompilation: no
+Packaged: 2015-07-15 14:27:29 UTC; jakeconway
+Author: Conway Jake [cre],
+  Gehlenborg Nils [aut]
+Maintainer: Conway Jake <jake_conway@student.uml.edu>
+Repository: CRAN
+Date/Publication: 2015-07-16 00:35:51
