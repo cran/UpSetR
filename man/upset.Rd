@@ -8,12 +8,11 @@ upset(data, nsets = 5, nintersects = 40, sets = NULL,
   matrix.color = "gray23", main.bar.color = "gray23",
   sets.bar.color = "gray23", point.size = 4, line.size = 1,
   name.size = 10, mb.ratio = c(0.7, 0.3), expression = NULL,
-  att.pos = NULL, att.color = main.bar.color, order.matrix = c("degree",
-  "freq"), show.numbers = "yes", number.angles = 0,
-  aggregate.by = "degree", cutoff = NULL, queries = NULL,
-  query.legend = "none", shade.color = "gray88", shade.alpha = 0.25,
-  empty.intersections = NULL, color.pal = 1, boxplot.summary = NULL,
-  attribute.plots = NULL)
+  att.pos = NULL, att.color = main.bar.color, order.by = c("degree",
+  "freq"), show.numbers = "yes", number.angles = 0, group.by = "degree",
+  cutoff = NULL, queries = NULL, query.legend = "none",
+  shade.color = "gray88", shade.alpha = 0.25, empty.intersections = NULL,
+  color.pal = 1, boxplot.summary = NULL, attribute.plots = NULL)
 }
 \arguments{
 \item{data}{Data set}
@@ -44,13 +43,13 @@ upset(data, nsets = 5, nintersects = 40, sets = NULL,
 
 \item{att.color}{Color of attribute histogram bins or scatterplot points for unqueried data represented by main bars. Default set to color of main bars.}
 
-\item{order.matrix}{How the intersections in the matrix should be ordered by. Options include frequency (entered as "freq"), degree, or both in any order.}
+\item{order.by}{How the intersections in the matrix should be ordered by. Options include frequency (entered as "freq"), degree, or both in any order.}
 
 \item{show.numbers}{Show numbers of intersection sizes above bars}
 
 \item{number.angles}{The angle of the numbers atop the intersection size bars}
 
-\item{aggregate.by}{How the data should be aggregated ("degree" or "sets")}
+\item{group.by}{How the data should be grouped ("degree" or "sets")}
 
 \item{cutoff}{The number of intersections from each set (to cut off at) when aggregating by sets}
 
@@ -70,7 +69,8 @@ See examples section on how to do this.}
 
 \item{color.pal}{Color palette for attribute plots}
 
-\item{boxplot.summary}{Boxplots representing the distribution of a selected attribute for each intersection. Change param from NULL to "on" for this option.}
+\item{boxplot.summary}{Boxplots representing the distribution of a selected attribute for each intersection. Select attributes by entering a character vector of attribute names (e.g. c("Name1", "Name2")).
+The maximum number of attributes that can be entered is 2.}
 
 \item{attribute.plots}{Create custom ggplot using intersection data represented in the main bar plot. Prior to adding custom plots, the UpSet plot is set up in a 100 by 100 grid.
 The attribute.plots parameter takes a list that contains the number of rows that should be allocated for the custom plot, and a list of plots with specified positions.
@@ -94,7 +94,7 @@ Data set must be formatted as described on the orginal UpSet github page: \url{h
 \examples{
 movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), header=TRUE, sep=";" )
 
-require(ggplot2); require(plyr); require(gridExtra); require(grid)
+require(ggplot2); require(plyr); require(gridExtra); require(grid);
 
 between <- function(row, min, max){
   newData <- (row["ReleaseDate"] < max) & (row["ReleaseDate"] > min)
@@ -120,7 +120,7 @@ attributeplots <- list(gridrows = 55,
                    ncols = 3)
 
 upset(movies, nsets = 7, nintersects = 30, mb.ratio = c(0.5, 0.5),
-      order.matrix = c("freq", "degree"))
+      order.by = c("freq", "degree"))
 
 upset(movies, sets = c("Drama", "Comedy", "Action", "Thriller", "Western", "Documentary"),
       queries = list(list(query = intersects, params = list("Drama", "Action")),

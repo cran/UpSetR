@@ -1,0 +1,4 @@
+html_vignette:
+  dev: png
+  toc: yes
+  toc_depth: 2
