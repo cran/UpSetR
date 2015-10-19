@@ -1,6 +1,7 @@
-## Counts the frequency of each intersection being looked at and sets up data for main bar plot
+## Counts the frequency of each intersection being looked at and sets up data for main bar plot.
+## Also orders the data for the bar plot and matrix plot
 Counter <- function(data, num_sets, start_col, name_of_sets, nintersections, mbar_color, order_mat,
-                    aggregate, cut, empty_intersects){
+                    aggregate, cut, empty_intersects, decrease){
   temp_data <- list()
   Freqs <- data.frame()
   end_col <- as.numeric(((start_col + num_sets) -1))
@@ -9,6 +10,7 @@ Counter <- function(data, num_sets, start_col, name_of_sets, nintersections, mba
     temp_data[i] <- match(name_of_sets[i], colnames(data))
   }
   Freqs <- data.frame(count(data[ ,as.integer(temp_data)]))
+  colnames(Freqs)[1:num_sets] <- name_of_sets
   #Adds on empty intersections if option is selected
   if(is.null(empty_intersects) == F){
     empty <- rep(list(c(0,1)), times = num_sets)
@@ -25,18 +27,14 @@ Counter <- function(data, num_sets, start_col, name_of_sets, nintersections, mba
     for(i in 1:nrow(Freqs)){
       Freqs$degree[i] <- rowSums(Freqs[ i ,1:num_sets])
     }
-    order_cols <- list()
+    order_cols <- c()
     for(i in 1:length(order_mat)){
       order_cols[i] <- match(order_mat[i], colnames(Freqs))
     }
-    for(i in order_cols){
-      if(i == (num_sets + 1)){
-        logic <- T
-      }
-      else{
-        logic <- F
-      }
-      Freqs <- Freqs[order(Freqs[ , i], decreasing = logic), ]
+    # if(length(order_cols)==2 && order_cols[1]>order_cols[2]){decrease <- rev(decrease)}
+    for(i in 1:length(order_cols)){
+      logic <- decrease[i]
+      Freqs <- Freqs[order(Freqs[ , order_cols[i]], decreasing = logic), ]
     }
   }
   #Aggregation by sets

@@ -12,6 +12,10 @@ FindStartEnd <- function(data){
       startend[1] <- i
       break
     }
+    else if((column[1] == "-1") && (column[2] == "0") && (column[3] == "1") && (length(column) == 3)){
+      startend[1] <- i
+      break
+    }
     else{
       next
     }
@@ -24,6 +28,10 @@ FindStartEnd <- function(data){
       break
     }
     else if((column[1] == "1") && (length(column) == 1)){
+      startend[2] <- i
+      break
+    }
+    else if((column[1] == "-1") && (column[2] == "0") && (column[3] == "1") && (length(column) == 3)){
       startend[2] <- i
       break
     }
@@ -125,15 +133,16 @@ OverlayEdit <- function(data1, data2, start_col, num_sets, intersects, exp, inte
   if(is.null(exp) == F){
     temp_data <- Subset_att(temp_data, exp)
   }
+  temp_data <- temp_data[intersects]
   temp_data <- na.omit(temp_data)
+  
   other_data <- data2[which(rowSums(data2[ ,1:num_sets]) == length(intersects)), ]
   other_data <- (other_data[ ,!(colnames(data2) %in% unwanted), drop = F])
   if(new_end == start_col){
-    
-    other_data <- other_data[ which(other_data[ ,1] == 1), ]
+    other_data <- other_data[ which(other_data[intersects] == 1), ]
   }
   else{
-    other_data <- other_data[which(rowSums(other_data[ ,1:length(intersects)]) == length(intersects)), ]
+    other_data <- other_data[which(rowSums(other_data[intersects]) == length(intersects)), ]
   }
   row_num <- as.integer(other_data$x)
   overlay_row <- data2[row_num, ]
