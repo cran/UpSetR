@@ -1,7 +1,7 @@
-718fe9d8983ac277a749c1d63507c5cc *DESCRIPTION
+a83caad6f06b17f2955094ce1be64153 *DESCRIPTION
 d9f6cb40ee14f3d3cddd45dbf54bfc01 *LICENSE
 42bfbc9fd6c8066de0d3e3ade43546d9 *NAMESPACE
-5d80cffbae75c6003cc64feeb5d4e1e3 *NEWS
+3eba6a72b87f62ad3c64d78e6a1142e0 *NEWS
 de6c2e324a9eba21b7901f713262bc39 *R/Boxplot.R
 72dd92d86ffeac7c29cbec9d8f45264d *R/Custom.plots.R
 97f3e10543973e18ff1dd8f90a80e588 *R/Custom.user.queries.R
@@ -10,7 +10,7 @@ f372d27bcea4d1f0a6248c1106642891 *R/General.query.funcs.R
 acfa3f7de560001c5a149bb68d7086a5 *R/Helper.funcs.R
 a5b6b45cea20f6a51207e9fc555e96ac *R/Intersection.queries.R
 b601d6e8f67266b7cca1d4f3b8671664 *R/MainBar.R
-5dddd25edbe6cfbbdc1164d427f21325 *R/Matrix.R
+2d9781abab8c1dfa8b742b4f2c7606df *R/Matrix.R
 03002a48b4f0287e481a204a9558096a *R/SizeBar.R
 9924b896c3c7b9cc891b3e69b8bd09e4 *R/UpSet.plot.R
 83f0c1f2123d624cb31783929d6dfd42 *R/elements.R
