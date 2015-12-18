@@ -1,27 +1,27 @@
 Package: UpSetR
 Title: A More Scalable Alternative to Venn and Euler Diagrams for
         Visualizing Intersecting Sets
-Version: 1.0.1
+Version: 1.0.2
 Date: 2015-07-13
 URL: http://github.com/hms-dbmi/UpSetR
 BugReports: http://github.com/hms-dbmi/UpSetR/issues
 Authors@R: c(
     person("Jake", "Conway", email = "jake_conway@student.uml.edu", role = "cre"),
     person("Nils", "Gehlenborg", email = "nils@hms.harvard.edu", role = "aut"))
-Description: Creates visualizations of intersecting sets using a novel matrix design,
-             along with visualizations of several common set, element and attribute
-             related tasks.
+Description: Creates visualizations of intersecting sets using a novel matrix
+    design, along with visualizations of several common set, element and attribute
+    related tasks.
 Depends: R (>= 3.0)
-Imports: ggplot2, grid, gridExtra, plyr, utils, stats, methods,
-        grDevices
+Imports: ggplot2, gridExtra, plyr, utils, stats, methods, grDevices
 License: MIT + file LICENSE
 LazyData: true
 VignetteBuilder: knitr
 Suggests: knitr
+RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2015-12-16 22:14:38 UTC; jakeconway
+Packaged: 2015-12-18 18:42:04 UTC; jakeconway
 Author: Jake Conway [cre],
   Nils Gehlenborg [aut]
 Maintainer: Jake Conway <jake_conway@student.uml.edu>
 Repository: CRAN
-Date/Publication: 2015-12-17 16:08:58
+Date/Publication: 2015-12-18 23:48:51
