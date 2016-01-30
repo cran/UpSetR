@@ -1,8 +1,8 @@
 Package: UpSetR
 Title: A More Scalable Alternative to Venn and Euler Diagrams for
         Visualizing Intersecting Sets
-Version: 1.0.2
-Date: 2015-07-13
+Version: 1.0.3
+Date: 2016-01-29
 URL: http://github.com/hms-dbmi/UpSetR
 BugReports: http://github.com/hms-dbmi/UpSetR/issues
 Authors@R: c(
@@ -19,9 +19,9 @@ VignetteBuilder: knitr
 Suggests: knitr
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2015-12-18 18:42:04 UTC; jakeconway
+Packaged: 2016-01-29 22:00:10 UTC; jakeconway
 Author: Jake Conway [cre],
   Nils Gehlenborg [aut]
 Maintainer: Jake Conway <jake_conway@student.uml.edu>
 Repository: CRAN
-Date/Publication: 2015-12-18 23:48:51
+Date/Publication: 2016-01-30 00:36:10
