@@ -1,7 +1,7 @@
-cea6c068c5b7fe7cb22e3d5fef74a16d *DESCRIPTION
+ce428660c416dd572818d87bee1953e3 *DESCRIPTION
 d9f6cb40ee14f3d3cddd45dbf54bfc01 *LICENSE
-2a76129f1fe53adbc3890dde4fe48c15 *NAMESPACE
-9ddc4386006becfff71e65a59252ce94 *NEWS
+244e8ec4cfea6a4dfbfc23e40d9253e2 *NAMESPACE
+0c94d97a5fd998e6a1c96508ef81a6c9 *NEWS
 de6c2e324a9eba21b7901f713262bc39 *R/Boxplot.R
 72dd92d86ffeac7c29cbec9d8f45264d *R/Custom.plots.R
 97f3e10543973e18ff1dd8f90a80e588 *R/Custom.user.queries.R
@@ -9,8 +9,8 @@ de6c2e324a9eba21b7901f713262bc39 *R/Boxplot.R
 f372d27bcea4d1f0a6248c1106642891 *R/General.query.funcs.R
 d92f68a6cc7e4480697c2404710d9c32 *R/Helper.funcs.R
 a5b6b45cea20f6a51207e9fc555e96ac *R/Intersection.queries.R
-603c300be0c93d555b19cb12ed0f5401 *R/MainBar.R
-2d9781abab8c1dfa8b742b4f2c7606df *R/Matrix.R
+653888ebd0e3e9a70c7b82b846f75de0 *R/MainBar.R
+2c4a273972d36341f4ee0a3d7a1c3194 *R/Matrix.R
 b55e818b03483f06271eb15dd23a9edc *R/Set.metadata.R
 c017854f0305a7d9bd541ff77a3c5969 *R/SizeBar.R
 fbb9018d3b1697679a95d2ff0f461d6b *R/Specific.intersections.R
@@ -21,7 +21,7 @@ fbb9018d3b1697679a95d2ff0f461d6b *R/Specific.intersections.R
 63f1276c1578aa597fa12710c9d6260b *R/histogram.R
 3fd2a335f7e2733e320c0448b2b3537c *R/intersects.R
 6ca3c51106c016b49978d2f05159f2a9 *R/scatter_plot.R
-8a53b11b16880835fbba22172b3802d6 *R/upset.R
+120d31063f1029b83592d0d3dec8f519 *R/upset.R
 a8de149c2629da5d307e7f0e90ab0561 *README.md
 bc2dff2b17089864129f86dbd09e72d5 *build/vignette.rds
 f415d781c7622565202330a47dcb2a48 *inst/doc/attribute.plots.R
@@ -41,7 +41,7 @@ e8c4d6c5129ab716defe0460f3eaf96e *man/fromList.Rd
 0466e4c0156ce5748bb5ac027f3f8594 *man/histogram.Rd
 8cb583740c6fa8cc7504f9290625e25d *man/intersects.Rd
 1b87c046593ddcfe08932b3e8ca8e631 *man/scatter_plot.Rd
-e0bddc2916bee1fab04b261d136edf06 *man/upset.Rd
+862f11870b4d7cb268a53aacabcb3ba6 *man/upset.Rd
 4f367d8294d309de8e96086b014a8830 *vignettes/_output.yaml
 f4a0085870ed797b357f7cd245217075 *vignettes/attribute.plots.Rmd
 6afb39fa4d0fb7a2f8a2115c472d67b8 *vignettes/basic.usage.Rmd
