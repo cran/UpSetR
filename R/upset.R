@@ -5,8 +5,9 @@
 #' @param nsets Number of sets to look at
 #' @param nintersects Number of intersections to plot
 #' @param sets Specific sets to look at (Include as combinations. Ex: c("Name1", "Name2"))
-#' @param set.metadata Metadata that offers insight to an attribute of the sets. Input should be a data frame with 2 columns. One column should be the names of the sets,
-#'        and the other column numeric attribute data. The final result will be a second bar plot alongside the set names. 
+#' @param set.metadata Metadata that offers insight to an attribute of the sets. Input should be a data frame where the first column is set names, and the 
+#'        remaining columns are attributes of those sets. To learn how to use this parameter it is highly suggested to view the set metadata vignette. The link
+#'        can be found on the package's GitHub page.
 #' @param intersections Specific intersections to include in plot entered as a list of lists.
 #'        Ex: list(list("Set name1", "Set name2"), list("Set name1", "Set name3")). If data is entered into this parameter the only data shown on the UpSet plot
 #'        will be the specific intersections listed.
@@ -37,6 +38,7 @@
 #' @param query.legend Position query legend on top or bottom of UpSet plot
 #' @param shade.color Color of row shading in matrix
 #' @param shade.alpha Transparency of shading in matrix
+#' @param matrix.dot.alpha Transparency of the empty intersections points in the matrix
 #' @param empty.intersections Additionally display empty sets up to nintersects
 #' @param color.pal Color palette for attribute plots
 #' @param boxplot.summary Boxplots representing the distribution of a selected attribute for each intersection. Select attributes by entering a character vector of attribute names (e.g. c("Name1", "Name2")).
@@ -106,11 +108,11 @@
 #' @export
 upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, set.metadata = NULL, intersections = NULL, matrix.color = "gray23",
                   main.bar.color = "gray23", mainbar.y.label = "Intersection Size", mainbar.y.max = NULL, sets.bar.color = "gray23",
-                  sets.x.label = "Set Size", point.size = 4, line.size = 1, name.size = 10, mb.ratio = c(0.70,0.30),
+                  sets.x.label = "Set Size", point.size = 2.2, line.size = 0.7, name.size = 7, mb.ratio = c(0.70,0.30),
                   expression = NULL, att.pos = NULL, att.color = main.bar.color, order.by = c("freq", "degree"),
                   decreasing = c(T, F), show.numbers = "yes", number.angles = 0, group.by = "degree",cutoff = NULL,
-                  queries = NULL, query.legend = "none", shade.color = "gray88", shade.alpha = 0.25, empty.intersections = NULL,
-                  color.pal = 1, boxplot.summary = NULL, attribute.plots = NULL){
+                  queries = NULL, query.legend = "none", shade.color = "gray88", shade.alpha = 0.25, matrix.dot.alpha =0.5,
+                  empty.intersections = NULL, color.pal = 1, boxplot.summary = NULL, attribute.plots = NULL){
   
   startend <-FindStartEnd(data)
   first.col <- startend[1]
@@ -121,7 +123,7 @@ upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, set.metadata =
                  "#7F7F7F", "#BCBD22", "#17BECF")
   }
   else{
-    palette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00",
+    palette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00",
                  "#CC79A7")
   }
   
@@ -206,7 +208,7 @@ upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, set.metadata =
     Matrix_col <- NULL
   }
   
-  Matrix_layout <- Create_layout(Matrix_setup, matrix.color, Matrix_col)
+  Matrix_layout <- Create_layout(Matrix_setup, matrix.color, Matrix_col, matrix.dot.alpha)
   Set_sizes <- FindSetFreqs(New_data, first.col, Num_of_set, Set_names)
   Bar_Q <- NULL
   if(is.null(queries) == F){
@@ -221,19 +223,27 @@ upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, set.metadata =
                                palette)
   }
   AllQueryData <- combineQueriesData(QInter_att_data, QElem_att_data, customAttDat, att.x, att.y)
-  ShadingData <- MakeShading(Matrix_layout)
+  
+  ShadingData <- NULL
+  
+  if(is.null(set.metadata) == F){
+    set.metadata.plots <- Make_set_metadata_plot(set.metadata, Set_names)
+    ShadingData <- get_shade_groups(set.metadata, Set_names, Matrix_layout, shade.alpha)
+    if(is.null(ShadingData) == FALSE){
+    shade.alpha <- unique(ShadingData$alpha)
+    }
+  }
+  if(is.null(ShadingData) == TRUE){
+  ShadingData <- MakeShading(Matrix_layout, shade.color)
+  }
   Main_bar <- Make_main_bar(All_Freqs, Bar_Q, show.numbers, mb.ratio, customQBar, number.angles, EBar_data, mainbar.y.label,
                             mainbar.y.max)
   Matrix <- Make_matrix_plot(Matrix_layout, Set_sizes, All_Freqs, point.size, line.size,
-                             name.size, labels, ShadingData, shade.color, shade.alpha)
+                             name.size, labels, ShadingData, shade.alpha)
   Sizes <- Make_size_plot(Set_sizes, sets.bar.color, mb.ratio, sets.x.label)
-  
-  if(is.null(set.metadata) == F){
-    set.metadata <- Make_set_metadata_plot(set.metadata, Set_names)
-  }
   
   Make_base_plot(Main_bar, Matrix, Sizes, labels, mb.ratio, att.x, att.y, New_data,
                  expression, att.pos, first.col, att.color, AllQueryData, attribute.plots,
-                 legend, query.legend, BoxPlots, Set_names, set.metadata)
+                 legend, query.legend, BoxPlots, Set_names, set.metadata, set.metadata.plots)
   
 }
