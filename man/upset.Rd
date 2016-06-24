@@ -15,7 +15,8 @@ upset(data, nsets = 5, nintersects = 40, sets = NULL,
   number.angles = 0, group.by = "degree", cutoff = NULL, queries = NULL,
   query.legend = "none", shade.color = "gray88", shade.alpha = 0.25,
   matrix.dot.alpha = 0.5, empty.intersections = NULL, color.pal = 1,
-  boxplot.summary = NULL, attribute.plots = NULL)
+  boxplot.summary = NULL, attribute.plots = NULL,
+  scale.intersections = "identity", scale.sets = "identity")
 }
 \arguments{
 \item{data}{Data set}
@@ -97,6 +98,10 @@ The maximum number of attributes that can be entered is 2.}
 The attribute.plots parameter takes a list that contains the number of rows that should be allocated for the custom plot, and a list of plots with specified positions.
 nrows is the number of rows the custom plots should take up. There is already 100 allocated for the custom plot. plots takes a list that contains a function that returns
 a custom ggplots and the x and y aesthetics for the function. ncols is the number of columns that your ggplots should take up. See examples for how to add custom ggplots.}
+
+\item{scale.intersections}{The scale to be used for the intersection sizes. Options: "identity", "log10", "log2"}
+
+\item{scale.sets}{The scale to be used for the set sizes. Options: "identity", "log10", "log2"}
 }
 \description{
 Visualization of set intersections using novel UpSet matrix design.
