@@ -3,7 +3,7 @@
 #' @description Visualization of set intersections using novel UpSet matrix design.
 #' @param data Data set
 #' @param nsets Number of sets to look at
-#' @param nintersects Number of intersections to plot
+#' @param nintersects Number of intersections to plot. If set to NA, all intersections will be plotted.
 #' @param sets Specific sets to look at (Include as combinations. Ex: c("Name1", "Name2"))
 #' @param keep.order Keep sets in the order entered using the sets parameter. The default is FALSE, which orders the sets by their sizes.
 #' @param set.metadata Metadata that offers insight to an attribute of the sets. Input should be a data frame where the first column is set names, and the 
@@ -218,7 +218,7 @@ upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, keep.order = F
   }
   
   Matrix_layout <- Create_layout(Matrix_setup, matrix.color, Matrix_col, matrix.dot.alpha)
-  Set_sizes <- FindSetFreqs(New_data, first.col, Num_of_set, Set_names)
+  Set_sizes <- FindSetFreqs(New_data, first.col, Num_of_set, Set_names, keep.order)
   Bar_Q <- NULL
   if(is.null(queries) == F){
     Bar_Q <- intersects(QuerieInterBar, Intersection, New_data, first.col, Num_of_set, All_Freqs, expression, Set_names, palette)

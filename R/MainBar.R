@@ -51,6 +51,9 @@ Counter <- function(data, num_sets, start_col, name_of_sets, nintersections, mba
     Freqs$x[i] <- i
     Freqs$color <- mbar_color
   }
+  if(is.na(nintersections)){
+    nintersections = nrow(Freqs)
+  }
   Freqs <- Freqs[1:nintersections, ]
   Freqs <- na.omit(Freqs)
   return(Freqs)
@@ -88,7 +91,7 @@ Make_main_bar <- function(Main_bar_data, Q, show_num, ratios, customQ, number_an
   }
   
   Main_bar_plot <- (ggplot(data = Main_bar_data, aes_string(x = "x", y = "freq")) 
-                    + scale_y_continuous(trans = scale_intersections)
+                    + scale_y_continuous(trans = scale_intersections, limits = c(0, ymax))
                     + geom_bar(stat = "identity", width = 0.6,
                                fill = Main_bar_data$color)
                     + scale_x_continuous(limits = c(0,(nrow(Main_bar_data)+1 )), expand = c(0,0),
