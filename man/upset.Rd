@@ -9,14 +9,15 @@ upset(data, nsets = 5, nintersects = 40, sets = NULL, keep.order = F,
   main.bar.color = "gray23", mainbar.y.label = "Intersection Size",
   mainbar.y.max = NULL, sets.bar.color = "gray23",
   sets.x.label = "Set Size", point.size = 2.2, line.size = 0.7,
-  name.size = 7, mb.ratio = c(0.7, 0.3), expression = NULL,
-  att.pos = NULL, att.color = main.bar.color, order.by = c("freq",
-  "degree"), decreasing = c(T, F), show.numbers = "yes",
-  number.angles = 0, group.by = "degree", cutoff = NULL, queries = NULL,
+  mb.ratio = c(0.7, 0.3), expression = NULL, att.pos = NULL,
+  att.color = main.bar.color, order.by = c("freq", "degree"),
+  decreasing = c(T, F), show.numbers = "yes", number.angles = 0,
+  group.by = "degree", cutoff = NULL, queries = NULL,
   query.legend = "none", shade.color = "gray88", shade.alpha = 0.25,
   matrix.dot.alpha = 0.5, empty.intersections = NULL, color.pal = 1,
   boxplot.summary = NULL, attribute.plots = NULL,
-  scale.intersections = "identity", scale.sets = "identity")
+  scale.intersections = "identity", scale.sets = "identity",
+  text.scale = 1, set_size.angles = 0)
 }
 \arguments{
 \item{data}{Data set}
@@ -52,8 +53,6 @@ will be the specific intersections listed.}
 \item{point.size}{Size of points in matrix plot}
 
 \item{line.size}{Width of lines in matrix plot}
-
-\item{name.size}{Size of set names in matrix plot}
 
 \item{mb.ratio}{Ratio between matrix plot and main bar plot (Keep in terms of hundreths)}
 
@@ -104,6 +103,11 @@ a custom ggplots and the x and y aesthetics for the function. ncols is the numbe
 \item{scale.intersections}{The scale to be used for the intersection sizes. Options: "identity", "log10", "log2"}
 
 \item{scale.sets}{The scale to be used for the set sizes. Options: "identity", "log10", "log2"}
+
+\item{text.scale}{Numeric, value to scale the text sizes, applies to all axis labels, tick labels, and numbers above bar plot. Can be a universal scale, or a vector containing individual scales
+in the following format: c(intersection size title, intersection size tick labels, set size title, set size tick labels, set names, numbers above bars)}
+
+\item{set_size.angles}{Numeric, angle to rotate the set size plot x-axis text}
 }
 \description{
 Visualization of set intersections using novel UpSet matrix design.
