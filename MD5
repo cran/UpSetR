@@ -1,7 +1,7 @@
-8dc21f2d14bfdf6d144b5a8dd01a1bf4 *DESCRIPTION
+b1b991b64856ff7588b3aa1a01891242 *DESCRIPTION
 d9f6cb40ee14f3d3cddd45dbf54bfc01 *LICENSE
 af38bf3b0e8237162a064871798a75f7 *NAMESPACE
-3acc65e4a956fca68ae732ecc6f545e4 *NEWS
+3ead788aa81912974844dc0d8e576275 *NEWS
 de6c2e324a9eba21b7901f713262bc39 *R/Boxplot.R
 72dd92d86ffeac7c29cbec9d8f45264d *R/Custom.plots.R
 97f3e10543973e18ff1dd8f90a80e588 *R/Custom.user.queries.R
@@ -9,11 +9,11 @@ de6c2e324a9eba21b7901f713262bc39 *R/Boxplot.R
 a6cd0049696bd9e0e9ba399da5b3c06d *R/General.query.funcs.R
 d92f68a6cc7e4480697c2404710d9c32 *R/Helper.funcs.R
 a5b6b45cea20f6a51207e9fc555e96ac *R/Intersection.queries.R
-e4b510bb4a5b72a90a4faf2a66d9badb *R/MainBar.R
+1cf8f28fa9236dab8ce0248a8e533aaf *R/MainBar.R
 be8656fb7dc3a15cc97300603ad21d14 *R/Matrix.R
 77668d64fac9445f7d6a4e8dbbd048fe *R/Metadata.plots.R
 dac41bf9e685a677da917abbf18cef4c *R/Set.metadata.R
-040b91896acc47c00359f5b5ab9460c1 *R/SizeBar.R
+a597f31f5a547b59422fd4640b265095 *R/SizeBar.R
 fbb9018d3b1697679a95d2ff0f461d6b *R/Specific.intersections.R
 f27a4df259a6088431d33a0911d54036 *R/UpSet.plot.R
 83f0c1f2123d624cb31783929d6dfd42 *R/elements.R
@@ -22,7 +22,7 @@ f27a4df259a6088431d33a0911d54036 *R/UpSet.plot.R
 136bbad1c7a163ca0717a0935a9777c1 *R/histogram.R
 3fd2a335f7e2733e320c0448b2b3537c *R/intersects.R
 4d9808c7ce1033415cf802918ed1086e *R/scatter_plot.R
-c8e69bd1552c3ee63864bd064f2ded2e *R/upset.R
+18c651ac38879166946f385b51a20a5d *R/upset.R
 a0a5895a394bdd8974e7d707893811e1 *README.md
 5a917f05af06f62c8e25732794669f6d *build/vignette.rds
 966c6fc2781beab37622415a241ae150 *inst/doc/attribute.plots.R
