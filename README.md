@@ -4,7 +4,24 @@
 
 UpSetR generates static [UpSet](http://vcg.github.io/upset/) plots. The UpSet technique visualizes set intersections in a matrix layout and introduces aggregates based on groupings and queries. The matrix layout enables the effective representation of associated data, such as the number of elements in the aggregates and intersections, as well as additional summary statistics derived from subset or element attributes.
 
-For further details about the original technique see the [UpSet website](http://vcg.github.io/upset/about/). You can also check out the [UpSetR shiny app](https://gehlenborglab.shinyapps.io/upsetr/). [Here is the source code](https://github.com/hms-dbmi/UpSetR-shiny) for the shiny wrapper
+For further details about the original technique see the [UpSet website](http://vcg.github.io/upset/about/). You can also check out the [UpSetR shiny app](https://gehlenborglab.shinyapps.io/upsetr/). [Here is the source code](https://github.com/hms-dbmi/UpSetR-shiny) for the shiny wrapper. 
+
+A [Python package](https://github.com/ImSoErgodic/py-upset) called [py-upset](https://github.com/ImSoErgodic/py-upset) to create UpSet plots has been created by GitHub user [ImSoErgodic](https://github.com/ImSoErgodic). 
+
+## Citation
+If you use UpSetR in a paper, please cite:
+
+> Jake R Conway, Alexander Lex, Nils Gehlenborg
+> UpSetR: An R Package for the Visualization of Intersecting Sets and their Properties
+> doi: https://doi.org/10.1093/bioinformatics/btx364
+
+The original technique and the interactive visualization tool implementing the approach are described here:
+
+> Alexander Lex, Nils Gehlenborg, Hendrik Strobelt, Romain Vuillemot, Hanspeter Pfister,   
+> UpSet: Visualization of Intersecting Sets,   
+> IEEE Transactions on Visualization and Computer Graphics (InfoVis '14), vol. 20, no. 12, pp. 1983–1992, 2014.  
+> doi: https://doi.org/10.1109/TVCG.2014.2346248
+
 
 ## Sample Data
 
@@ -18,6 +35,8 @@ mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR
 The movie data set created by the [GroupLens Lab](http://grouplens.org/datasets/movielens) and curated by [Bilal Alsallakh](https://github.com/bilalsal) and the mutations data set was originally created by the TCGA Consortium and represents mutations for the 100 most mutated genes in a glioblastoma multiforme cohort.
 
 ## Examples
+
+In addition to the examples shown here, we have included a range of UpSetR plots in the [paper about the R package](#citation), which can be found in a [separate GitHub repository](https://github.com/hms-dbmi/UpSetR-paper). 
 
 ### Vignettes
 
@@ -75,11 +94,3 @@ Download the latest development code of UpSetR from GitHub using [devtools](http
 ```R
 devtools::install_github("hms-dbmi/UpSetR")
 ```
-
-## Citation
-If you use UpSetR in a paper, please cite:   
-
-> Alexander Lex, Nils Gehlenborg, Hendrik Strobelt, Romain Vuillemot, Hanspeter Pfister,   
-> UpSet: Visualization of Intersecting Sets,   
-> IEEE Transactions on Visualization and Computer Graphics (InfoVis '14), vol. 20, no. 12, pp. 1983–1992, 2014.  
-> doi:10.1109/TVCG.2014.2346248

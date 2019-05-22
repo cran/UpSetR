@@ -20,7 +20,7 @@ Counter <- function(data, num_sets, start_col, name_of_sets, nintersections, mba
     colnames(empty) <- name_of_sets
     empty$freq <- 0
     all <- rbind(Freqs, empty)
-    Freqs <- data.frame(all[!duplicated(all[1:num_sets]), ])
+    Freqs <- data.frame(all[!duplicated(all[1:num_sets]), ], check.names = F)
   }
   #Remove universal empty set
   Freqs <- Freqs[!(rowSums(Freqs[ ,1:num_sets]) == 0), ]
@@ -62,7 +62,6 @@ Counter <- function(data, num_sets, start_col, name_of_sets, nintersections, mba
 ## Generate main bar plot
 Make_main_bar <- function(Main_bar_data, Q, show_num, ratios, customQ, number_angles,
                           ebar, ylabel, ymax, scale_intersections, text_scale, attribute_plots){
-  
 
   bottom_margin <- (-1)*0.65
 
@@ -107,16 +106,15 @@ Make_main_bar <- function(Main_bar_data, Q, show_num, ratios, customQ, number_an
   
   if(ylabel == "Intersection Size" && scale_intersections != "identity"){
     ylabel <- paste("Intersection Size", paste0("( ", scale_intersections, " )"))
-    if(scale_intersections == "log2"){
-      Main_bar_data$freq <- round(log2(Main_bar_data$freq), 2)
-      ymax <- log2(ymax)
-    }
-    if(scale_intersections == "log10"){
-      Main_bar_data$freq <- round(log10(Main_bar_data$freq), 2)
-      ymax <- log10(ymax)
-    }
   }
-  
+  if(scale_intersections == "log2"){
+    Main_bar_data$freq <- round(log2(Main_bar_data$freq), 2)
+    ymax <- log2(ymax)
+  }
+  if(scale_intersections == "log10"){
+    Main_bar_data$freq <- round(log10(Main_bar_data$freq), 2)
+    ymax <- log10(ymax)
+  }
   Main_bar_plot <- (ggplot(data = Main_bar_data, aes_string(x = "x", y = "freq")) 
                     + scale_y_continuous(trans = scale_intersections)
                     + ylim(0, ymax)
@@ -154,7 +152,6 @@ Make_main_bar <- function(Main_bar_data, Q, show_num, ratios, customQ, number_an
     bCustomDat <- customQ[which(customQ$act == T), ]
     bCustomDat <- bCustomDat[order(bCustomDat$x), ]
   }
-  
   if(length(bInterDat) != 0){
     Main_bar_plot <- Main_bar_plot + geom_bar(data = bInterDat,
                                               aes_string(x="x", y = "freq"),
