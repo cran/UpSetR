@@ -4,22 +4,51 @@
 \alias{upset}
 \title{UpSetR Plot}
 \usage{
-upset(data, nsets = 5, nintersects = 40, sets = NULL,
-  keep.order = F, set.metadata = NULL, intersections = NULL,
-  matrix.color = "gray23", main.bar.color = "gray23",
-  mainbar.y.label = "Intersection Size", mainbar.y.max = NULL,
-  sets.bar.color = "gray23", sets.x.label = "Set Size",
-  point.size = 2.2, line.size = 0.7, mb.ratio = c(0.7, 0.3),
-  expression = NULL, att.pos = NULL, att.color = main.bar.color,
-  order.by = c("freq", "degree"), decreasing = c(T, F),
-  show.numbers = "yes", number.angles = 0, group.by = "degree",
-  cutoff = NULL, queries = NULL, query.legend = "none",
-  shade.color = "gray88", shade.alpha = 0.25, matrix.dot.alpha = 0.5,
-  empty.intersections = NULL, color.pal = 1, boxplot.summary = NULL,
-  attribute.plots = NULL, scale.intersections = "identity",
-  scale.sets = "identity", text.scale = 1, set_size.angles = 0,
-  set_size.show = FALSE, set_size.numbers_size = NULL,
-  set_size.scale_max = NULL)
+upset(
+  data,
+  nsets = 5,
+  nintersects = 40,
+  sets = NULL,
+  keep.order = F,
+  set.metadata = NULL,
+  intersections = NULL,
+  matrix.color = "gray23",
+  main.bar.color = "gray23",
+  mainbar.y.label = "Intersection Size",
+  mainbar.y.max = NULL,
+  sets.bar.color = "gray23",
+  plot.title = NA,
+  sets.x.label = "Set Size",
+  point.size = 2.2,
+  line.size = 0.7,
+  mb.ratio = c(0.7, 0.3),
+  expression = NULL,
+  att.pos = NULL,
+  att.color = main.bar.color,
+  order.by = c("freq", "degree"),
+  decreasing = c(T, F),
+  show.numbers = "yes",
+  number.angles = 0,
+  number.colors = NULL,
+  group.by = "degree",
+  cutoff = NULL,
+  queries = NULL,
+  query.legend = "none",
+  shade.color = "gray88",
+  shade.alpha = 0.25,
+  matrix.dot.alpha = 0.5,
+  empty.intersections = NULL,
+  color.pal = 1,
+  boxplot.summary = NULL,
+  attribute.plots = NULL,
+  scale.intersections = "identity",
+  scale.sets = "identity",
+  text.scale = 1,
+  set_size.angles = 0,
+  set_size.show = FALSE,
+  set_size.numbers_size = NULL,
+  set_size.scale_max = NULL
+)
 }
 \arguments{
 \item{data}{Data set}
@@ -50,6 +79,8 @@ will be the specific intersections listed.}
 
 \item{sets.bar.color}{Color of set size bar plot}
 
+\item{plot.title}{Title of UpSetR plot}
+
 \item{sets.x.label}{The x-axis label of the set size bar plot}
 
 \item{point.size}{Size of points in matrix plot}
@@ -71,6 +102,8 @@ will be the specific intersections listed.}
 \item{show.numbers}{Show numbers of intersection sizes above bars}
 
 \item{number.angles}{The angle of the numbers atop the intersection size bars}
+
+\item{number.colors}{The colors of the numbers atop the intersection size bars}
 
 \item{group.by}{How the data should be grouped ("degree" or "sets")}
 
@@ -121,7 +154,7 @@ in the following format: c(intersection size title, intersection size tick label
 Visualization of set intersections using novel UpSet matrix design.
 }
 \details{
-Visualization of set data in the layout described by Lex and Gehlenborg in \url{http://www.nature.com/nmeth/journal/v11/n8/abs/nmeth.3033.html}.
+Visualization of set data in the layout described by Lex and Gehlenborg in \url{https://www.nature.com/articles/nmeth.3033}.
 UpSet also allows for visualization of queries on intersections and elements, along with custom queries queries implemented using
 Hadley Wickham's apply function. To further analyze the data contained in the intersections, the user may select additional attribute plots
 to be displayed alongside the UpSet plot. The user also has the the ability to pass their own plots into the function to further analyze
@@ -129,7 +162,7 @@ data belonging to queries of interest. Most aspects of the UpSet plot are custom
 Depending on how the features are selected, UpSet can display between 25-65 sets and between 40-100 intersections.
 }
 \note{
-Data set must be formatted as described on the original UpSet github page: \url{http://github.com/VCG/upset/wiki}.
+Data set must be formatted as described on the original UpSet github page: \url{https://github.com/VCG/upset/wiki}.
 }
 \examples{
 movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), header=TRUE, sep=";" )
@@ -175,12 +208,12 @@ upset(movies, attribute.plots = attributeplots,
 }
 \references{
 Lex et al. (2014). UpSet: Visualization of Intersecting Sets
-IEEE Transactions on Visualization and Computer Graphics (Proceedings of InfoVis 2014), vol 20, pp. 1983-1992, (2014). \url{http://people.seas.harvard.edu/~alex/papers/2014_infovis_upset.pdf}
+IEEE Transactions on Visualization and Computer Graphics (Proceedings of InfoVis 2014), vol 20, pp. 1983-1992, (2014). \url{https://vdl.sci.utah.edu/publications/2014_infovis_upset/}
 
-Lex and Gehlenborg (2014). Points of view: Sets and intersections. Nature Methods 11, 779 (2014). \url{http://www.nature.com/nmeth/journal/v11/n8/abs/nmeth.3033.html}
+Lex and Gehlenborg (2014). Points of view: Sets and intersections. Nature Methods 11, 779 (2014). \url{https://www.nature.com/articles/nmeth.3033}
 }
 \seealso{
-Original UpSet Website: \url{http://vcg.github.io/upset/about/}
+Original UpSet Website: \url{https://vcg.github.io/upset/about/}
 
-UpSetR github for additional examples: \url{http://github.com/hms-dbmi/UpSetR}
+UpSetR github for additional examples: \url{https://github.com/hms-dbmi/UpSetR}
 }

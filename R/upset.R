@@ -14,6 +14,7 @@
 #'        will be the specific intersections listed.
 #' @param matrix.color Color of the intersection points
 #' @param main.bar.color Color of the main bar plot
+#' @param plot.title Title of UpSetR plot
 #' @param mainbar.y.label The y-axis label of the intersection size bar plot
 #' @param mainbar.y.max The maximum y value of the intersection size bar plot scale. May be useful when aligning multiple UpSet plots horizontally.
 #' @param sets.bar.color Color of set size bar plot
@@ -28,6 +29,7 @@
 #' @param decreasing How the variables in order.by should be ordered. "freq" is decreasing (greatest to least) and "degree" is increasing (least to greatest)
 #' @param show.numbers Show numbers of intersection sizes above bars
 #' @param number.angles The angle of the numbers atop the intersection size bars
+#' @param number.colors The colors of the numbers atop the intersection size bars
 #' @param group.by How the data should be grouped ("degree" or "sets")
 #' @param cutoff The number of intersections from each set (to cut off at) when aggregating by sets
 #' @param queries Unified query of intersections, elements, and custom row functions. Entered as a list that contains a list of
@@ -55,18 +57,18 @@
 #' @param set_size.show Logical, display the set sizes on the set size bar chart
 #' @param set_size.numbers_size If set_size.show is TRUE, adjust the size of the numbers
 #' @param set_size.scale_max Increase the maximum of set size scale
-#' @details Visualization of set data in the layout described by Lex and Gehlenborg in \url{http://www.nature.com/nmeth/journal/v11/n8/abs/nmeth.3033.html}.
+#' @details Visualization of set data in the layout described by Lex and Gehlenborg in \url{https://www.nature.com/articles/nmeth.3033}.
 #' UpSet also allows for visualization of queries on intersections and elements, along with custom queries queries implemented using
 #' Hadley Wickham's apply function. To further analyze the data contained in the intersections, the user may select additional attribute plots
 #' to be displayed alongside the UpSet plot. The user also has the the ability to pass their own plots into the function to further analyze
 #' data belonging to queries of interest. Most aspects of the UpSet plot are customizable, allowing the user to select the plot that best suits their style.
 #' Depending on how the features are selected, UpSet can display between 25-65 sets and between 40-100 intersections.
-#' @note Data set must be formatted as described on the original UpSet github page: \url{http://github.com/VCG/upset/wiki}.
+#' @note Data set must be formatted as described on the original UpSet github page: \url{https://github.com/VCG/upset/wiki}.
 #' @references Lex et al. (2014). UpSet: Visualization of Intersecting Sets
-#' IEEE Transactions on Visualization and Computer Graphics (Proceedings of InfoVis 2014), vol 20, pp. 1983-1992, (2014). \url{http://people.seas.harvard.edu/~alex/papers/2014_infovis_upset.pdf}
-#' @references Lex and Gehlenborg (2014). Points of view: Sets and intersections. Nature Methods 11, 779 (2014). \url{http://www.nature.com/nmeth/journal/v11/n8/abs/nmeth.3033.html}
-#' @seealso Original UpSet Website: \url{http://vcg.github.io/upset/about/}
-#' @seealso UpSetR github for additional examples: \url{http://github.com/hms-dbmi/UpSetR}
+#' IEEE Transactions on Visualization and Computer Graphics (Proceedings of InfoVis 2014), vol 20, pp. 1983-1992, (2014). \url{https://vdl.sci.utah.edu/publications/2014_infovis_upset/}
+#' @references Lex and Gehlenborg (2014). Points of view: Sets and intersections. Nature Methods 11, 779 (2014). \url{https://www.nature.com/articles/nmeth.3033}
+#' @seealso Original UpSet Website: \url{https://vcg.github.io/upset/about/}
+#' @seealso UpSetR github for additional examples: \url{https://github.com/hms-dbmi/UpSetR}
 #' @examples movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), header=TRUE, sep=";" )
 #'
 #'require(ggplot2); require(plyr); require(gridExtra); require(grid);
@@ -117,9 +119,9 @@
 #' @export
 upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, keep.order = F, set.metadata = NULL, intersections = NULL,
                   matrix.color = "gray23", main.bar.color = "gray23", mainbar.y.label = "Intersection Size", mainbar.y.max = NULL,
-                  sets.bar.color = "gray23", sets.x.label = "Set Size", point.size = 2.2, line.size = 0.7,
+                  sets.bar.color = "gray23", plot.title = NA, sets.x.label = "Set Size", point.size = 2.2, line.size = 0.7,
                   mb.ratio = c(0.70,0.30), expression = NULL, att.pos = NULL, att.color = main.bar.color, order.by = c("freq", "degree"),
-                  decreasing = c(T, F), show.numbers = "yes", number.angles = 0, group.by = "degree",cutoff = NULL,
+                  decreasing = c(T, F), show.numbers = "yes", number.angles = 0, number.colors=NULL, group.by = "degree",cutoff = NULL,
                   queries = NULL, query.legend = "none", shade.color = "gray88", shade.alpha = 0.25, matrix.dot.alpha =0.5,
                   empty.intersections = NULL, color.pal = 1, boxplot.summary = NULL, attribute.plots = NULL, scale.intersections = "identity",
                   scale.sets = "identity", text.scale = 1, set_size.angles = 0 , set_size.show = FALSE, set_size.numbers_size = NULL, set_size.scale_max = NULL){
@@ -255,8 +257,8 @@ upset <- function(data, nsets = 5, nintersects = 40, sets = NULL, keep.order = F
   if(is.null(ShadingData) == TRUE){
   ShadingData <- MakeShading(Matrix_layout, shade.color)
   }
-  Main_bar <- suppressMessages(Make_main_bar(All_Freqs, Bar_Q, show.numbers, mb.ratio, customQBar, number.angles, EBar_data, mainbar.y.label,
-                            mainbar.y.max, scale.intersections, text.scale, attribute.plots))
+  Main_bar <- suppressMessages(Make_main_bar(All_Freqs, Bar_Q, show.numbers, mb.ratio, customQBar, number.angles, number.colors, EBar_data, mainbar.y.label,
+                            mainbar.y.max, scale.intersections, text.scale, attribute.plots, plot.title))
   Matrix <- Make_matrix_plot(Matrix_layout, Set_sizes, All_Freqs, point.size, line.size,
                              text.scale, labels, ShadingData, shade.alpha)
   Sizes <- Make_size_plot(Set_sizes, sets.bar.color, mb.ratio, sets.x.label, scale.sets, text.scale, set_size.angles,set_size.show,
